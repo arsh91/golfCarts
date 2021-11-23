@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link href="css/style.css" rel="stylesheet">
+    <link href="css/jquery-ui-datepicker.css" rel="stylesheet">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 
@@ -59,7 +60,7 @@
                                         </div>
                                         <div class="form-group mb-3">
                                             <label for="checkindate">Select Check In Date</label>
-                                            <input type="date" name="checkindate" max="2999-12-31" class="form-control"
+                                            <input type="text" name="checkindate"  id="checkindate" class="form-control"
                                                 required>
                                         </div>
                                         <div class="form-group mb-3">
@@ -200,6 +201,21 @@
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
     </script>
     <script src="js/custom.js"></script>
+    <script src="js/jquery-ui-datepicker.js"></script>
+    <script type="text/javascript">
+
+    $(document).ready(function() {
+    var dateFormat = "mm-dd-yy",
+        
+        from = $("#checkindate").datepicker({
+            defaultDate: "+1w",
+            changeMonth: true,
+            numberOfMonths: 1,
+            dateFormat: dateFormat
+        
+        });
+    });
+        </script>
 </body>
 
 </html>
