@@ -47,15 +47,18 @@ if(isset($_POST['submit'])){
     $property= $_POST['property'];
     $dfirstname= $_POST['d_firstname'];
     $dlastname= $_POST['d_lastname'];
-    $checkindate= $_POST['checkindate'];
+    $checkindate = $_POST['checkindate'];
+    $explodecheckindate= explode('-', $checkindate);
+    $newcheckindate = $explodecheckindate[2].'-'.$explodecheckindate[0].'-'.$explodecheckindate[1];
+               // print_r($newcheckindate); die();
     $demail= $_POST['d_email'];
 
    
-		$dataRet = $db->query('INSERT into golfcartusers (Firstname, Lastname, Property, Checkindate, emailaddress, DLpiclink, Inspiclink, CCfrontpiclink, CCbackpiclink) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)', $dfirstname, $dlastname, $property, $checkindate, $demail, $license, $insurance, $frontcard, $backcard);
+		$dataRet = $db->query('INSERT into golfcartusers (Firstname, Lastname, Property, Checkindate, emailaddress, DLpiclink, Inspiclink, CCfrontpiclink, CCbackpiclink) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)', $dfirstname, $dlastname, $property, $newcheckindate, $demail, $license, $insurance, $frontcard, $backcard);
         
         if ($dataRet) {
         // Admin Email
-            $date = date("d-m-Y", strtotime($checkindate) );
+            $date = date("d-m-Y", strtotime($newcheckindate) );
         
             $bodytext ='Hey, <br> <p> Please find below driver details:- <p> <div><p>First Name = '.$dfirstname.' </p><p> Last Name = '.$dlastname.' </p><p> Property Name= '.$property.' </p><p> Check In Date = '.$date.' </p> <p> Driver Email = '.$demail.' </p> </div>';
         
